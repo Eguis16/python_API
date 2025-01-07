@@ -18,14 +18,14 @@ app.config.from_mapping(
     DB= os.environ.get('FLASK')
 )
 
-@app.route('/')
-def home():
-    return render_template("index.html")
-
-
-@app.route('/inicio')
+@app.route('/', methods=['GET'])
 def inicio():
-    return render_template('inicio.html')
+    return render_template('index.html')
+
+@app.route('/Sobre MI', methods=['GET'])
+def Sobre_Mi():
+    return render_template('sobre_me.html')
+
 if __name__ == '__main__':
     app(debug=True)
 
