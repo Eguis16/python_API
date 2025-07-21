@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Buscar Equipos{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='datos/buscar.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Buscar Equipos</h2>
+
+<form method="get" action="{{ url_for('mikoshi.buscar') }}">
+    <input type="text" name="q" placeholder="Buscar por usuario, marca, modelo..." value="{{ query or '' }}" required>
+    <button type="submit">Buscar</button>
+</form>
+
+{% if Equipos %}
+    <h3>Resultados para "{{ query }}"</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipo in Equipos %}
+            <tr>
+                <td>{{ equipo.id }}</td>
+                <td>{{ equipo.usuario }}</td>
+                <td>{{ equipo.marca }}</td>
+                <td>{{ equipo.modelo }}</td>
+                <td>{{ equipo.estado }}</td>
+                <td>
+                    <a href="{{ url_for('mikoshi.update', id=equipo.id) }}">Editar</a>
+                    <form action="{{ url_for('mikoshi.delete', id=equipo.id) }}" method="post" style="display:inline;">
+                        <button type="submit" onclick="return confirm('¿Eliminar este equipo?')">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% elif query %}
+    <p>No se encontraron resultados para "{{ query }}".</p>
+{% endif %}
+{% endblock %}

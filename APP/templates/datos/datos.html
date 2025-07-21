@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block main_title %}
+<h2>Sistema</h2>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='datos/db.css') }}">
+{% endblock %}
+
+{% block header %}
+{% if g.user %}
+    <a href="{{ url_for('mikoshi.create') }}">Registro de Equipos</a>
+{% endif %}
+{% endblock %}
+
+{% block title %} Mikoshi {% endblock %}
+
+{% block content %}
+
+<form method="get" action="{{ url_for('mikoshi.index') }}" class="form-busqueda">
+    <input type="text" name="q" placeholder="Buscar por usuario, marca o modelo..." value="{{ query or '' }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<div class="box">
+    <h1 class="text-center">Equipos</h1>
+    <table class="table table-custom" border="1">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Número de Serie</th>
+                <th>Número de Parte</th>
+                <th>Estado</th>
+                <th>Sistema Operativo</th>
+                <th>Versión BIOS</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipo in Equipos %}
+            <tr>
+                <td>{{ equipo.usuario }}</td>
+                <td>{{ equipo.marca }}</td>
+                <td>{{ equipo.modelo }}</td>
+                <td>{{ equipo.numero_serie }}</td>
+                <td>{{ equipo.numero_parte }}</td>
+                <td>{{ equipo.estado }}</td>
+                <td>{{ equipo.sistema_operativo }}</td>
+                <td>{{ equipo.version_bios }}</td>
+                <td>
+                    <a href="{{url_for('mikoshi.update', id=equipo.id )}}" class="btn-sm">Editar</a>
+                    <form action="{{url_for('mikoshi.delete', id=equipo.id)}}" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(' ¿ Estas seguro que deseas eliminar este equipo ? ');">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

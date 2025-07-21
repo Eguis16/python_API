@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block main_title %}
+<h2 class="page-title">Gestión de Roles</h2>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='auth/role.css') }}">
+{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+            <li class="flash {{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+{% for user in users %}
+<div class="container">
+        <form class="role-form" method="post">
+            <p><strong>{{ user.username }}</strong>(Rol Actual: {{ user.role }})</p>
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+
+            <select class="role-select" name="new_role" id="new_role_{{ user.id }}">
+                <option value="admin">Administrador</option>
+                <option value="editor">Editor</option>
+                <option value="lector">Lector</option>
+                <input class="btn-submit" type="submit" value="Actualizar">
+            </select>
+        </form>
+        <hr>
+</div>
+{% endfor %}
+<a class="btn-link" href="{{ url_for('mikoshi.index')}}">Inicio</a>
+{% endblock %}
+

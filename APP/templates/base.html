@@ -3,10 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
-    <title>{% block title %} Jinja2 {% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    {% block styles %} {% endblock %}
+    <title>{% block title %} Inicio {% endblock %} </title>
 </head>
 <body>
-    {% block content%} {% endblock%} 
+   <header class="main-header">
+    <div class="title">Sistema</div>
+    <nav class="main-nav">
+        <ul class="nav-list">
+            {% if g.user %}
+            <li><a href="{{url_for('auth.update_password')}}">Actualizacion</a></li>
+            <li><a href="{{url_for('mikoshi.create')}}">Registro de Equipo</a></li>
+            {% if g.user['role'] == 'admin' %}
+                <li><a href="{{ url_for('auth.manage_roles')}}">Roles</a></li>
+            {% endif %}
+            <li><a href="{{url_for('auth.logout')}}">Cierre de Sesion</a></li>
+            {% else %}
+            
+            <li><a href="{{url_for('auth.login')}}">Inicio de Sesion</a></li>
+            <li><a href="{{url_for('auth.register')}}">Registro de Usuario</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+   </header>
+   <section class="contenido"> {% block content %} {% endblock %}</section>
 </body>
 </html>

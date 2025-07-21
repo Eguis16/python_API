@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block main_title %} <h2>Nuevo Equipo</h2> {%endblock%}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='datos/create.css') }}">
+{% endblock %}
+
+{% block content %}
+    
+    <form class="register-form" method="post">
+        <h2 class="titulo">Formulario de Registro</h2>
+  
+        <label for="usuario">Usuario</label>
+        <input type="text" name="usuario" id="usuario" required><br>
+
+        <label for="marca">Marca</label>
+        <input type="text" name="marca" id="marca" required><br>
+
+        <label for="modelo">Modelo</label>
+        <input type="text" name="modelo" id="modelo" required><br>
+
+        <label for="numero_serie">Número de Serie</label>
+        <input type="text" name="numero_serie" id="numero_serie" required><br>
+
+        <label for="numero_parte">Número de Parte</label>
+        <input type="text" name="numero_parte" id="numero_parte" required><br>
+
+        <label for="estado">Estado</label>
+        <input type="text" name="estado" id="estado" required><br>
+
+        <label for="sistema_operativo">Sistema Operativo</label>
+        <input type="text" name="sistema_operativo" id="sistema_operativo" required><br>
+
+        <label for="version_bios">Versión BIOS</label>
+        <input type="text" name="version_bios" id="version_bios" required><br>
+
+        <input type="submit" value="Registrar Equipo" required>
+        <li><a href="{{url_for('mikoshi.index')}}">Inicio</a></li>
+    </form>
+
+{% endblock %}

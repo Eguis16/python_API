@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block main_title %}
+<h2>Registro de Usuario</h2>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='auth/register.css') }}">
+{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+            <li class="flash {{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<form class="register-form" method="post">
+    <label for="username">Nombre de usuario:</label>
+    <input type="text" name="username" id="username" required>
+
+    <label for="password">Contraseña:</label>
+    <input type="password" name="password" id="password" required>
+
+    <input type="submit" value="Registrarse">
+</form>
+{% endblock %}

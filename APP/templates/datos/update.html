@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='datos/update.css') }}">
+{% endblock %}
+
+{% block content %}
+<div style="margin-top: 40px;">
+    <h2 class="titulo">Editar Equipo</h2>
+    <form class="update-form" method="post">
+        <label for="usuario">Usuario:</label><br>
+        <input type="text" id="usuario" name="usuario" value="{{ equipo.usuario }}" required><br><br>
+
+        <label for="marca">Marca:</label><br>
+        <input type="text" id="marca" name="marca" value="{{ equipo.marca }}" required><br><br>
+
+        <label for="modelo">Modelo:</label><br>
+        <input type="text" id="modelo" name="modelo" value="{{ equipo.modelo }}" required><br><br>
+
+        <label for="numero_serie">Número de Serie:</label><br>
+        <input type="text" id="numero_serie" name="numero_serie" value="{{ equipo.numero_serie }}" required><br><br>
+
+        <label for="numero_parte">Número de Parte:</label><br>
+        <input type="text" id="numero_parte" name="numero_parte" value="{{ equipo.numero_parte }}" required><br><br>
+
+        <label for="estado">Estado:</label><br>
+        <input type="text" id="estado" name="estado" value="{{ equipo.estado }}" required><br><br>
+
+        <label for="sistema_operativo">Sistema Operativo:</label><br>
+        <input type="text" id="sistema_operativo" name="sistema_operativo" value="{{ equipo.sistema_operativo }}" required><br><br>
+
+        <label for="version_bios">Versión BIOS:</label><br>
+        <input type="text" id="version_bios" name="version_bios" value="{{ equipo.version_bios }}" required><br><br>
+
+        <button type="submit">Guardar Cambios</button>
+        <a href="{{ url_for('mikoshi.index') }}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

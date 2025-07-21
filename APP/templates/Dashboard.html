@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="box">
+
+    <h1 class="text-center">Equipos</h1>
+    <table class="table table-custom" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Número de Serie</th>
+                <th>Número de Parte</th>
+                <th>Estado</th>
+                <th>Sistema Operativo</th>
+                <th>Versión BIOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipo in datos %}
+            <tr>
+                <td>{{ equipo.id }}</td>
+                <td>{{ equipo.usuario }}</td>
+                <td>{{ equipo.marca }}</td>
+                <td>{{ equipo.modelo }}</td>
+                <td>{{ equipo.numero_serie }}</td>
+                <td>{{ equipo.numero_parte }}</td>
+                <td>{{ equipo.estado }}</td>
+                <td>{{ equipo.sistema_operativo }}</td>
+                <td>{{ equipo.version_bios }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
