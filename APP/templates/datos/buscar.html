@@ -9,7 +9,7 @@
 {% block content %}
 <h2>Buscar Equipos</h2>
 
-<form method="get" action="{{ url_for('mikoshi.buscar') }}">
+<form method="get" action="{{ url_for('route.buscar') }}">
     <input type="text" name="q" placeholder="Buscar por usuario, marca, modelo..." value="{{ query or '' }}" required>
     <button type="submit">Buscar</button>
 </form>
@@ -36,8 +36,8 @@
                 <td>{{ equipo.modelo }}</td>
                 <td>{{ equipo.estado }}</td>
                 <td>
-                    <a href="{{ url_for('mikoshi.update', id=equipo.id) }}">Editar</a>
-                    <form action="{{ url_for('mikoshi.delete', id=equipo.id) }}" method="post" style="display:inline;">
+                    <a href="{{ url_for('route.update', id=equipo.id) }}">Editar</a>
+                    <form action="{{ url_for('route.delete', id=equipo.id) }}" method="post" style="display:inline;">
                         <button type="submit" onclick="return confirm('¿Eliminar este equipo?')">Eliminar</button>
                     </form>
                 </td>

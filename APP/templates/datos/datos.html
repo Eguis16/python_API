@@ -10,7 +10,7 @@
 
 {% block header %}
 {% if g.user %}
-    <a href="{{ url_for('mikoshi.create') }}">Registro de Equipos</a>
+    <a href="{{ url_for('route.create') }}">Registro de Equipos</a>
 {% endif %}
 {% endblock %}
 
@@ -18,7 +18,7 @@
 
 {% block content %}
 
-<form method="get" action="{{ url_for('mikoshi.index') }}" class="form-busqueda">
+<form method="get" action="{{ url_for('route.index') }}" class="form-busqueda">
     <input type="text" name="q" placeholder="Buscar por usuario, marca o modelo..." value="{{ query or '' }}">
     <button type="submit">Buscar</button>
 </form>
@@ -51,8 +51,8 @@
                 <td>{{ equipo.sistema_operativo }}</td>
                 <td>{{ equipo.version_bios }}</td>
                 <td>
-                    <a href="{{url_for('mikoshi.update', id=equipo.id )}}" class="btn-sm">Editar</a>
-                    <form action="{{url_for('mikoshi.delete', id=equipo.id)}}" method="post" style="display: inline;">
+                    <a href="{{url_for('route.update', id=equipo.id )}}" class="btn-sm">Editar</a>
+                    <form action="{{url_for('route.delete', id=equipo.id)}}" method="post" style="display: inline;">
                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(' ¿ Estas seguro que deseas eliminar este equipo ? ');">Eliminar</button>
                     </form>
                 </td>

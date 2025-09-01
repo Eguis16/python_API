@@ -3,7 +3,7 @@ from werkzeug.exceptions import abort
 from .auth_bp import login_required
 from .db.connection import get_db
 
-bp = Blueprint('mikoshi', __name__)
+bp = Blueprint('route', __name__)
 
 @bp.route('/')
 @login_required
@@ -76,7 +76,7 @@ def create():
       
             db.commit()
             flash('Equipo registrado exitosamente', 'success')
-            return redirect(url_for('mikoshi.create'))
+            return redirect(url_for('route.create'))
     return render_template('datos/create.html')
 
 @bp.route('/<int:id>/update', methods=['GET', 'POST'])
@@ -100,7 +100,7 @@ def update(id):
 ''', (usuario, marca, modelo, numero_serie, numero_parte, estado, sistema_operativo, version_bios, id))
         db.commit()
         flash('Equipo actualizado correctamente', 'success')
-        return redirect(url_for('mikoshi.index'))
+        return redirect(url_for('route.index'))
     return render_template('datos/update.html', equipo = equipo)
 
 
@@ -112,7 +112,7 @@ def delete(id):
     c.execute('DELETE FROM equipos WHERE id = %s', (id,))
     db.commit()
     flash('Equipo eliminado correctamente', 'success')
-    return redirect(url_for('mikoshi.index'))
+    return redirect(url_for('route.index'))
 
 def get_up(id):
     db, c = get_db()

@@ -17,7 +17,7 @@
         <ul class="nav-list">
             {% if g.user %}
             <li><a href="{{url_for('auth.update_password')}}">Actualizacion</a></li>
-            <li><a href="{{url_for('mikoshi.create')}}">Registro de Equipo</a></li>
+            <li><a href="{{url_for('route.create')}}">Registro de Equipo</a></li>
             {% if g.user['role'] == 'admin' %}
                 <li><a href="{{ url_for('auth.manage_roles')}}">Roles</a></li>
             {% endif %}

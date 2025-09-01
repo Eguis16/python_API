@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect
 from dotenv import load_dotenv
 from .db import connection
-from .mikoshi import bp as mikoshi_bp
+from .route import bp as route_bp
 from .auth_bp import bp as auth_bp
 import os
 
@@ -16,7 +16,7 @@ app.config['DB_PASSWORD'] = os.getenv('DB_PASSWORD')
 app.config['DB'] = os.getenv('DB')
 connection.init_app(app)
 app.register_blueprint(auth_bp)
-app.register_blueprint(mikoshi_bp)
+app.register_blueprint(route_bp)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
