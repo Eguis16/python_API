@@ -1,5 +1,4 @@
 from flask import Flask, render_template, redirect
-from flask_wtf.csrf import CSRFProtect
 from dotenv import load_dotenv
 from .db import connection
 from .mikoshi import bp as mikoshi_bp

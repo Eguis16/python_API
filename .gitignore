@@ -3,26 +3,3 @@ venv/
 
 # Variables de entorno
 .env
-
-# Archivos de caché de Python
-__pycache__/
-*.py[cod]
-
-# Archivos de logs
-*.log
-
-# Archivos de bases de datos locales
-*.sqlite3
-*.db
-
-# Archivos de configuración de editores
-.vscode/
-.idea/
-
-# Archivos del sistema operativo
-.DS_Store
-Thumbs.db
-
-# Archivos de compilación o distribución
-dist/
-build/
